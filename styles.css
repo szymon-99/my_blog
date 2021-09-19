@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .page-width {
+    @apply mx-4 sm:mx-6 md:mx-auto md:w-10/12 max-w-6xl;
+  }
+}
