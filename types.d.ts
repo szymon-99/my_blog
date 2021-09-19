@@ -12,4 +12,10 @@ export interface PostMetadata {
   category: TCategory
   date: string
   description: string
+  image: string
+}
+
+export interface IPost {
+  data: PostMetadata
+  slug: string
 }

@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className=' fixed inset-x-0 bg-white shadow transition-height backdrop-filter md:bg-opacity-60  md:backdrop-blur-sm  '
+      className=' z-10 fixed inset-x-0 bg-white shadow transition-height backdrop-filter md:bg-opacity-60  md:backdrop-blur-sm  '
     >
       <div className='page-width  flex items-center justify-between h-16 md:h-20'>
         <div className={isNavOpen ? 'pointer-events-none' : undefined}>

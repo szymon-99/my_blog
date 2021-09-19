@@ -2,6 +2,7 @@ import { GetStaticProps, NextPage } from 'next'
 import { PostMetadata, TCategory } from 'types'
 import { getAllPosts, getCategories } from 'utils/mdx'
 import Link from 'next/link'
+import Posts from 'components/Posts'
 
 interface BlogPageProps {
   posts: { data: PostMetadata; slug: string }[]
@@ -11,18 +12,7 @@ interface BlogPageProps {
 const BlogPage: NextPage<BlogPageProps> = ({ posts, categories }) => {
   return (
     <>
-      <div>
-        {posts.map((post) => {
-          const { title, description } = post.data
-          return (
-            <div key={post.slug}>
-              <h1>{title}</h1>
-              <h3>{description}</h3>
-              <Link href={`/${post.slug}`}>Read more</Link>
-            </div>
-          )
-        })}
-      </div>
+      <Posts posts={posts} />
       <div style={{ marginTop: '200px' }}>
         {categories.map((category) => {
           return <Link href={`/blog/${category}`}>{category}</Link>
