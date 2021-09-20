@@ -51,13 +51,7 @@ export const getCategories = () => {
 export const getCategoryPosts = (category: TCategory) => {
   const files = fs.readdirSync(POSTS_PATH)
 
-  const posts = files
-    .map((filename) => {
-      const { data } = getFrontmatterData(filename)
+  const posts = getAllPosts()
 
-      return data
-    })
-    .filter((post) => post.category === category)
-
-  return posts
+  return posts.filter((post) => post.data.category === category)
 }

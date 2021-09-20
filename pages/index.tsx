@@ -14,13 +14,12 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
     <>
       <WelcomeSection />
 
+      <h3 className='section-title'>Latest Posts</h3>
       <Posts posts={posts.slice(0, 6)} />
 
       <div className='flex justify-center mt-16'>
         <Link href='/blog'>
-          <a className=' transition px-4 py-2 rounded-md border-2 bg-purple-900 text-white hover:bg-opacity-90 hover:scale-105 transform '>
-            Go to all blog posts
-          </a>
+          <a className=' btn bg-purple-900 text-white'>Go to all blog posts</a>
         </Link>
       </div>
     </>

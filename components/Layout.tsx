@@ -6,7 +6,7 @@ const Layout: FC = ({ children }) => {
     <>
       <Header />
       {/* main content */}
-      <main className='page-width pt-16 md:pt-20 '>{children}</main>
+      <div className='page-width pt-16 md:pt-20'>{children}</div>
       {/* gooter */}
       <footer>All rights resesrved</footer>
     </>

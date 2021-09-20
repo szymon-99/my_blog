@@ -3,6 +3,7 @@ import { PostMetadata, TCategory } from 'types'
 import { getAllPosts, getCategories } from 'utils/mdx'
 import Link from 'next/link'
 import Posts from 'components/Posts'
+import Categories from 'components/Categories'
 
 interface BlogPageProps {
   posts: { data: PostMetadata; slug: string }[]
@@ -12,12 +13,11 @@ interface BlogPageProps {
 const BlogPage: NextPage<BlogPageProps> = ({ posts, categories }) => {
   return (
     <>
+      <h1 className='section-title'>All Posts</h1>
+
       <Posts posts={posts} />
-      <div style={{ marginTop: '200px' }}>
-        {categories.map((category) => {
-          return <Link href={`/blog/${category}`}>{category}</Link>
-        })}
-      </div>
+
+      <Categories categories={categories} />
     </>
   )
 }

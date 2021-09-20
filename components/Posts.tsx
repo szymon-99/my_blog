@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowRight } from 'react-icons/bs'
 import { useRouter } from 'next/router'
+import CategoryLabel from './CategoryLabel'
 
 interface PostsProps {
   posts: IPost[]
@@ -13,7 +14,7 @@ const Posts: FC<PostsProps> = ({ posts }) => {
   const router = useRouter()
 
   return (
-    <section className=' gap-16 grid mt-16 md:mt-24 sm:gap-12 sm:grid-cols-2 xl:grid-cols-3'>
+    <section className=' section gap-16 grid sm:gap-12 sm:grid-cols-2 xl:grid-cols-3'>
       {posts.map((post, index) => {
         const { data, slug } = post
 
@@ -40,6 +41,8 @@ const Posts: FC<PostsProps> = ({ posts }) => {
                     </span>
                   </a>
                 </Link>
+
+                <CategoryLabel category={data.category} />
               </div>
             </div>
           </article>
