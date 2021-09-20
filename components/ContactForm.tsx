@@ -1,71 +1,74 @@
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import { useForm, FormProvider } from 'react-hook-form'
 import { VscLoading } from 'react-icons/vsc'
+import Input from './Input'
 
-interface FormData {
+export interface FormData {
   name: string
   title: string
   message: string
 }
 
 const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>()
+  const methods = useForm<FormData>()
   const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => setIsSuccess(false), 3000)
+    }
+  }, [isSuccess])
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
 
-    await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then(async (res) => {
-      console.log('response received')
-      setIsLoading(false)
-      if (res.status === 200) {
-        const data = await res.json()
-        console.log(data)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      if (response.ok) {
+        setIsLoading(false)
+        setIsSuccess(true)
+      } else {
+        throw new Error(response.statusText)
       }
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
-
   return (
-    <form className='grid gap-4' onSubmit={handleSubmit(onSubmit)}>
-      <input
-        className='border border-purple-900 p-2'
-        {...register('name', { required: true })}
-      />
-      {errors.name && <p>required</p>}
-      <input
-        className='border border-purple-900 p-2'
-        {...register('title', { required: true })}
-      />
-      {errors.title && <p>required</p>}
-      <textarea
-        className='border border-purple-900 p-2'
-        {...register('message', { required: true })}
-      />
-      {errors.message && <p>required</p>}
-      {isLoading && <p className='text-3xl'>LOADING....</p>}
-      <button className='btn-primary hover:scale-100 relative' type='submit'>
-        <span className='absolute inset-0 flex items-center justify-center'>
-          <span
-            className={`opacity-0 text-purple-900 text-xl ${
-              isLoading && 'opacity-100 animate-spin'
-            }`}
-          >
-            <VscLoading />
+    <FormProvider {...methods}>
+      {isSuccess && <p className='text-2xl text-green-400'>Success!!!</p>}
+      <form
+        className='section grid gap-4 mx-auto w-full max-w-sm'
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
+        <Input name='name' />
+        <Input name='title' />
+        <Input textarea name='message' />
+
+        <button className='btn bg-purple-900 text-white relative' type='submit'>
+          <span className='absolute inset-0 flex items-center justify-center'>
+            <span
+              className={`opacity-0 text-purple-900 text-xl ${
+                isLoading && 'opacity-100 animate-spin'
+              }`}
+            >
+              <VscLoading />
+            </span>
           </span>
-        </span>
-        submit
-      </button>
-    </form>
+          <span className={`${isLoading && 'opacity-0'}`}>SUBMIT</span>
+        </button>
+      </form>
+      {methods.formState.isDirty && (
+        <p className='text-xl text-red-600'>fill all fields</p>
+      )}
+    </FormProvider>
   )
 }
 
