@@ -1,5 +1,11 @@
+import { PageTitle } from 'components'
+
 const contact = () => {
-  return <div>Contact me</div>
+  return (
+    <main>
+      <PageTitle title='Contact Me' />
+    </main>
+  )
 }
 
 export default contact

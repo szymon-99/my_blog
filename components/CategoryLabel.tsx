@@ -16,7 +16,7 @@ const CategoryLabel: FC<CategoryLabelProps> = ({ category }) => {
           : category === 'Gatsby'
           ? 'bg-purple-800 '
           : category === 'CSS'
-          ? 'bg-blue-600 '
+          ? 'bg-indigo-600 '
           : category === 'Node'
           ? 'bg-green-700'
           : category === 'React'

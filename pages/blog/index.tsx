@@ -1,8 +1,7 @@
 import { GetStaticProps, NextPage } from 'next'
 import { PostMetadata, TCategory } from 'types'
 import { getAllPosts, getCategories } from 'utils/mdx'
-import Posts from 'components/Posts'
-import Categories from 'components/Categories'
+import { PageTitle, Categories, Posts } from 'components'
 
 interface BlogPageProps {
   posts: { data: PostMetadata; slug: string }[]
@@ -12,11 +11,7 @@ interface BlogPageProps {
 const BlogPage: NextPage<BlogPageProps> = ({ posts, categories }) => {
   return (
     <main>
-      <div className='flex justify-center section'>
-        <h1 className='text-center gradient-text text-4xl md:text-5xl'>
-          All Posts
-        </h1>
-      </div>
+      <PageTitle title='All Posts' />
 
       <Categories categories={categories} />
 

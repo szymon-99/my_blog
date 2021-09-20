@@ -5,6 +5,7 @@ import { PostMetadata } from 'types'
 import { MDXRemote } from 'next-mdx-remote'
 import Link from 'next/link'
 import React from 'react'
+import { PageTitle } from 'components'
 
 interface IPostParams extends ParsedUrlQuery {
   slug: string
@@ -18,6 +19,7 @@ interface SinglePostProps {
 const SinglePost: NextPage<SinglePostProps> = ({ data, compiledSource }) => {
   return (
     <div>
+      <PageTitle title={data.title} category={data.category} />
       <MDXRemote compiledSource={compiledSource}></MDXRemote>
       <Link href='/'>Back to home page</Link>
     </div>

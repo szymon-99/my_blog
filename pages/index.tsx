@@ -1,9 +1,8 @@
 import type { NextPage, GetStaticProps } from 'next'
 import { getAllPosts } from 'utils/mdx'
 import Link from 'next/link'
-import WelcomeSection from 'components/WelcomeSection'
+import { WelcomeSection, Posts, PageTitle } from 'components'
 import { IPost } from 'types'
-import Posts from 'components/Posts'
 
 interface IHomeProps {
   posts: IPost[]
@@ -14,16 +13,20 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
     <>
       <WelcomeSection />
 
-      <h3 className='section text-2xl md:text-3xl text-center font-bold'>
-        Latest Posts
-      </h3>
+      {/* <PageTitle title='Latest Posts' /> */}
+      <div className='flex justify-center section'>
+        <h3 className='font-bold text-3xl md:text-4xl  relative'>
+          LatestPosts
+          <span className='absolute h-1 bg-purple-900 -bottom-1/4 left-0 w-1/5'></span>
+        </h3>
+      </div>
       <main>
         <Posts posts={posts.slice(0, 6)} />
       </main>
 
       <div className='flex justify-center mt-16'>
         <Link href='/blog'>
-          <a className=' btn bg-purple-900 text-white'>Go to all blog posts</a>
+          <a className=' btn-primary'>Go to all blog posts</a>
         </Link>
       </div>
     </>

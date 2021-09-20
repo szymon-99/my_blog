@@ -18,7 +18,6 @@ const Header = () => {
       .split('/')[1]
       .replace('', '/')
       .replace('[slug]', 'blog')
-    console.log(route)
     setCurrentRoute(route as Route)
   }, [router.route])
 
