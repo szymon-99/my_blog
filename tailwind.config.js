@@ -12,6 +12,9 @@ module.exports = {
       transitionProperty: {
         height: 'height',
       },
+      padding: {
+        ratio: '56.25%',
+      },
     },
   },
   variants: {

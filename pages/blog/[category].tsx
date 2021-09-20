@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { getCategories, getCategoryPosts } from '../../utils/mdx'
 import { ParsedUrlQuery } from 'querystring'
-import { IPost, PostMetadata, TCategory } from '../../types'
+import { IPost, TCategory } from '../../types'
 import Posts from 'components/Posts'
 
 interface ICategoryParams extends ParsedUrlQuery {
@@ -10,10 +10,18 @@ interface ICategoryParams extends ParsedUrlQuery {
 
 interface CategoryPageProps {
   posts: IPost[]
+  category: TCategory
 }
 
-const CategoryPage: NextPage<CategoryPageProps> = ({ posts }) => {
-  return <Posts posts={posts} />
+const CategoryPage: NextPage<CategoryPageProps> = ({ posts, category }) => {
+  return (
+    <main>
+      <div className='flex justify-center section'>
+        <h1 className='  gradient-text text-4xl md:text-5xl'>{category}</h1>
+      </div>
+      <Posts posts={posts} />
+    </main>
+  )
 }
 
 export default CategoryPage
@@ -34,6 +42,7 @@ export const getStaticProps: GetStaticProps = ({ params }) => {
   return {
     props: {
       posts,
+      category,
     },
   }
 }

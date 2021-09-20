@@ -24,10 +24,10 @@ const Posts: FC<PostsProps> = ({ posts }) => {
             className=' shadow-md rounded-md cursor-pointer transition group overflow-hidden hover:shadow-lg'
             onClick={() => router.push('/' + slug)}
           >
-            <header className='h-56 md:h-48 relative '>
+            <header className='pt-ratio relative '>
               <Image src={data.image} layout='fill' className='object-cover' />
             </header>
-            <div className='p-6 grid gap-2'>
+            <div className='p-6 grid gap-4'>
               <h4 className=' font-medium text-2xl lg:text-3xl '>
                 {data.title}
               </h4>

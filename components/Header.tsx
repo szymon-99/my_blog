@@ -1,13 +1,26 @@
 import { navLinks } from 'utils/constants'
 import Link from 'next/link'
-import { GiMoebiusTriangle, GiHamburgerMenu } from 'react-icons/gi'
+import { GiMoebiusTriangle } from 'react-icons/gi'
 import { useEffect, useRef, useState } from 'react'
 import NavToggle from './NavToggle'
+import { useRouter } from 'next/router'
+
+type Route = '/' | '/blog' | '/contact'
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const [selectedItem, setSelectedItem] = useState(0)
+  const [currentRoute, setCurrentRoute] = useState<Route | null>(null)
   const headerRef = useRef<HTMLElement>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    const route = router.route
+      .split('/')[1]
+      .replace('', '/')
+      .replace('[slug]', 'blog')
+    console.log(route)
+    setCurrentRoute(route as Route)
+  }, [router.route])
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {
@@ -44,9 +57,8 @@ const Header = () => {
               return (
                 <li
                   key={index}
-                  onClick={() => setSelectedItem(index)}
                   className={`text-xl text-black border-b-2 border-purple-900  hover:text-purple-900 transition ${
-                    selectedItem === index
+                    currentRoute === href
                       ? 'border-opacity-100'
                       : 'border-opacity-0'
                   }`}
@@ -75,10 +87,9 @@ const Header = () => {
                 key={index}
                 onClick={() => {
                   setIsNavOpen(false)
-                  setSelectedItem(index)
                 }}
                 className={`text-center text-xl text-black border-b-2 border-purple-900  hover:text-purple-900 transition ${
-                  selectedItem === index
+                  currentRoute === href
                     ? 'border-opacity-100'
                     : 'border-opacity-0'
                 }`}

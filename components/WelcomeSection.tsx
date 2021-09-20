@@ -24,7 +24,7 @@ const WelcomeSection = () => {
       </div>
       <div className='   flex items-center justify-center  md:col-span-5 md:h-auto '>
         <img
-          className=' w-4/5 max-w-xs  md:w-full md:max-w-none'
+          className=' w-4/5 max-w-sm  md:w-full md:max-w-none'
           src='/coder.svg'
           alt='coding guy'
         />
