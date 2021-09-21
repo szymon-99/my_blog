@@ -13,11 +13,10 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
     <>
       <WelcomeSection />
 
-      {/* <PageTitle title='Latest Posts' /> */}
       <div className='flex justify-center section'>
         <h3 className='font-bold text-3xl md:text-4xl  relative'>
           LatestPosts
-          <span className='absolute h-1 bg-purple-700 -bottom-1/4 left-0 w-1/5'></span>
+          <span className='absolute h-1 bg-purple-700 -bottom-1/4 left-0 w-1/5 rounded-md'></span>
         </h3>
       </div>
       <main>

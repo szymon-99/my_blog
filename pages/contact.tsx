@@ -4,6 +4,7 @@ const contact = () => {
   return (
     <main>
       <PageTitle title='Contact Me' />
+
       <ContactForm />
     </main>
   )

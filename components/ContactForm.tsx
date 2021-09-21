@@ -13,6 +13,7 @@ const ContactForm = () => {
   const methods = useForm<FormData>()
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const { reset } = methods
 
   useEffect(() => {
     if (isSuccess) {
@@ -34,6 +35,7 @@ const ContactForm = () => {
       if (response.ok) {
         setIsLoading(false)
         setIsSuccess(true)
+        reset()
       } else {
         throw new Error(response.statusText)
       }
@@ -43,7 +45,6 @@ const ContactForm = () => {
   }
   return (
     <FormProvider {...methods}>
-      {isSuccess && <p className='text-2xl text-green-400'>Success!!!</p>}
       <form
         className='section grid gap-4 mx-auto w-full max-w-sm'
         onSubmit={methods.handleSubmit(onSubmit)}
@@ -55,7 +56,7 @@ const ContactForm = () => {
         <button className='btn bg-purple-900 text-white relative' type='submit'>
           <span className='absolute inset-0 flex items-center justify-center'>
             <span
-              className={`opacity-0 text-purple-900 text-xl ${
+              className={`opacity-0 text-white text-xl ${
                 isLoading && 'opacity-100 animate-spin'
               }`}
             >
@@ -65,9 +66,7 @@ const ContactForm = () => {
           <span className={`${isLoading && 'opacity-0'}`}>SUBMIT</span>
         </button>
       </form>
-      {methods.formState.isDirty && (
-        <p className='text-xl text-red-600'>fill all fields</p>
-      )}
+      {isSuccess && <p className='text-2xl text-green-400'>Success!!!</p>}
     </FormProvider>
   )
 }
