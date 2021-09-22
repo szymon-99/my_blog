@@ -23,9 +23,7 @@ const Input: FC<InputProps> = ({ name, textarea }) => {
       {textarea && (
         <textarea {...register(name, { required: true })} className={classes} />
       )}
-      {!textarea && (
-        <input {...register(name, { required: true })} className={classes} />
-      )}
+      {!textarea && <input {...register(name)} className={classes} />}
     </div>
   )
 }

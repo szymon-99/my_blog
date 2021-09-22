@@ -14,7 +14,7 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
       <WelcomeSection />
 
       <div className='flex justify-center section'>
-        <h3 className='font-bold text-3xl md:text-4xl  relative'>
+        <h3 className='font-bold text-3xl md:text-4xl  relative text-gray-900'>
           LatestPosts
           <span className='absolute h-1 bg-purple-700 -bottom-1/4 left-0 w-1/5 rounded-md'></span>
         </h3>

@@ -4,7 +4,7 @@ const WelcomeSection = () => {
   return (
     <section className='-mt-16 grid gap-4 grid-rows-2 lg:grid-rows-1  lg:grid-cols-12 min-h-screen md:-mt-20'>
       <div className='text-center self-end  flex flex-col justify-center lg:self-auto lg:col-span-7 lg:text-left '>
-        <h1 className='text-4xl md:text-6xl'>
+        <h1 className='text-4xl md:text-6xl text-gray-900'>
           Welcome to
           <span className='font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-900 via-purple-500 to-purple-900'>
             {' '}

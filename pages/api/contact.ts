@@ -12,8 +12,8 @@ export default async function handler(
   }
 
   const { name, title, message } = req.body
-  if (!name && !title && !message) {
-    return res.status(404).send('error')
+  if (!name || !title || !message) {
+    return res.status(404).send('All fields required')
   }
 
   let nodemailer = require('nodemailer')

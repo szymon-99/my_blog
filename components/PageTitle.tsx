@@ -19,7 +19,7 @@ const PageTitle: FC<PageTitleProps> = ({ title, category }) => {
   if (!category) {
     return (
       <div className='flex justify-center section'>
-        <h1 className='text-4xl md:text-5xl gradient-text from-black to-purple-900'>
+        <h1 className='text-5xl md:text-6xl gradient-text from-gray-800 to-purple-900'>
           {title}
         </h1>
       </div>
@@ -29,7 +29,7 @@ const PageTitle: FC<PageTitleProps> = ({ title, category }) => {
   return (
     <div className='flex justify-center section'>
       <h1
-        className={` text-4xl md:text-5xl gradient-text from-${palette[category]}-400 to-${palette[category]}-900`}
+        className={` text-5xl md:text-6xl gradient-text from-${palette[category]}-400 to-${palette[category]}-900`}
       >
         {title}
       </h1>
