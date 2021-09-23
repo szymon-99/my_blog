@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import Link from 'next/link'
 import React from 'react'
 import { PageTitle } from 'components'
+import { mdxComponents } from 'utils/constants'
 
 interface IPostParams extends ParsedUrlQuery {
   slug: string
@@ -18,11 +19,18 @@ interface SinglePostProps {
 
 const SinglePost: NextPage<SinglePostProps> = ({ data, compiledSource }) => {
   return (
-    <div>
+    <>
       <PageTitle title={data.title} category={data.category} />
-      <MDXRemote compiledSource={compiledSource}></MDXRemote>
-      <Link href='/'>Back to home page</Link>
-    </div>
+      <main className=' max-w-3xl mx-auto section'>
+        <MDXRemote
+          components={mdxComponents}
+          compiledSource={compiledSource}
+        ></MDXRemote>
+        <Link href='/'>
+          <a className='btn-primary mt-6 inline-block'>Back to home page</a>
+        </Link>
+      </main>
+    </>
   )
 }
 

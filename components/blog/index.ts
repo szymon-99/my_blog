@@ -1,0 +1,5 @@
+export * as Headings from './Headings'
+export { default as PrismSetup } from './Prism'
+export { default as Code } from './Code'
+export { default as Blockquote } from './Blockquote'
+export { default as Paragraph } from './Paragraph'

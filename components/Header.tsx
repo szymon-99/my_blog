@@ -56,9 +56,9 @@ const Header = () => {
               return (
                 <li
                   key={index}
-                  className={`text-xl text-black border-b-2 border-purple-900  hover:text-purple-900 transition ${
+                  className={` font-bold  uppercase text-black text-opacity-60 border-b-2 border-purple-900  hover:text-purple-900 transition ${
                     currentRoute === href
-                      ? 'border-opacity-100'
+                      ? 'border-opacity-100 text-opacity-100'
                       : 'border-opacity-0'
                   }`}
                 >
@@ -72,7 +72,7 @@ const Header = () => {
       </div>
 
       {/* mobile navbar */}
-      <aside
+      <nav
         className={`md:hidden absolute top-full w-full flex items-center justify-center bg-white shadow flex-col h-0 overflow-hidden transition-height ${
           isNavOpen && ' h-40'
         }`}
@@ -98,7 +98,7 @@ const Header = () => {
             )
           })}
         </ul>
-      </aside>
+      </nav>
     </header>
   )
 }

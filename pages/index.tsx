@@ -25,7 +25,9 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
 
       <div className='flex justify-center mt-16'>
         <Link href='/blog'>
-          <a className=' btn-primary'>Go to all blog posts</a>
+          <a className=' btn text-gray-900 border-gray-900 border-2 hover:text-gray-200 hover:bg-gray-900'>
+            Go to all blog posts
+          </a>
         </Link>
       </div>
     </>

@@ -8,7 +8,7 @@ interface CategoryLabelProps {
 const CategoryLabel: FC<CategoryLabelProps> = ({ category }) => {
   return (
     <div
-      className={` px-3 py-1 rounded shadow text-xs text-white ${
+      className={` px-3 py-1 rounded shadow text-sm text-white md:text-base ${
         category === 'TypeScript'
           ? 'bg-blue-700'
           : category === 'JavaScript'
