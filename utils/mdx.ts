@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
-import { serialize } from 'next-mdx-remote/serialize'
+import { bundleMDX } from 'mdx-bundler'
 import { TCategory, PostMetadata } from 'types'
 
 const POSTS_PATH = path.join(process.cwd(), 'posts')
@@ -31,9 +31,9 @@ export const getAllPosts = () => {
 export const getSinglePost = async (slug: string) => {
   const { data, content } = getFrontmatterData(slug + '.mdx')
 
-  const { compiledSource } = await serialize(content)
+  const { code } = await bundleMDX(content)
 
-  return { data, compiledSource }
+  return { data, code }
 }
 
 export const getCategories = () => {

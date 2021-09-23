@@ -2,11 +2,11 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { getAllPosts, getSinglePost } from 'utils/mdx'
 import { ParsedUrlQuery } from 'querystring'
 import { PostMetadata } from 'types'
-import { MDXRemote } from 'next-mdx-remote'
 import Link from 'next/link'
 import React from 'react'
 import { PageTitle } from 'components'
 import { mdxComponents } from 'utils/constants'
+import { getMDXComponent } from 'mdx-bundler/client'
 
 interface IPostParams extends ParsedUrlQuery {
   slug: string
@@ -14,20 +14,19 @@ interface IPostParams extends ParsedUrlQuery {
 
 interface SinglePostProps {
   data: PostMetadata
-  compiledSource: string
+  code: string
 }
 
-const SinglePost: NextPage<SinglePostProps> = ({ data, compiledSource }) => {
+const SinglePost: NextPage<SinglePostProps> = ({ data, code }) => {
+  const Component = React.useMemo(() => getMDXComponent(code), [code])
+
   return (
     <>
       <PageTitle title={data.title} category={data.category} />
       <main className=' max-w-3xl mx-auto section'>
-        <MDXRemote
-          components={mdxComponents}
-          compiledSource={compiledSource}
-        ></MDXRemote>
+        <Component components={mdxComponents} />
         <Link href='/'>
-          <a className='btn-primary mt-6 inline-block'>Back to home page</a>
+          <a className='btn-primary  inline-block'>Back to home page</a>
         </Link>
       </main>
     </>
@@ -48,12 +47,12 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as IPostParams
 
-  const { data, compiledSource } = await getSinglePost(slug)
+  const { data, code } = await getSinglePost(slug)
 
   return {
     props: {
       data,
-      compiledSource,
+      code,
     },
   }
 }

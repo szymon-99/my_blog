@@ -20,7 +20,7 @@ const Posts: FC<PostsProps> = ({ posts }) => {
         return (
           <article
             key={index}
-            className=' shadow-md rounded-md cursor-pointer transition group  hover:shadow-lg'
+            className=' shadow-md bg-gray-100 rounded-lg cursor-pointer transition group  hover:shadow-lg'
             onClick={() => router.push('/' + slug)}
           >
             <div className='p-6 grid gap-6 lg:p-10 lg:gap-8'>

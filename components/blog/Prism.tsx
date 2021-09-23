@@ -1,15 +1,24 @@
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/github'
+import { FC } from 'react'
 
-const Prism = ({ children }) => {
-  const { className, children: code } = children.props
+interface MDXtag {
+  props: {
+    className: string
+    children: string
+  }
+}
+
+const Prism: FC = ({ children }) => {
+  const preProps = children as MDXtag
+  const { className, children: code } = preProps.props
   const language = className.split('-')[1]
   const formattedCode = code.trim()
 
   return (
     <Highlight
       {...defaultProps}
-      language={language}
+      language={language as Language}
       theme={theme}
       code={formattedCode}
     >
@@ -18,7 +27,7 @@ const Prism = ({ children }) => {
           className='p-4 relative block my-6 rounded-md shadow md:p-8'
           style={style}
         >
-          <span className='absolute right-0 text-xs top-0 bg-purple-900 text-white rounded-bl-lg p-1 uppercase '>
+          <span className='absolute right-0 text-xs top-0 bg-purple-600 text-white rounded-bl-lg p-1 uppercase '>
             {language}
           </span>
           {tokens.map((line, i) => (
