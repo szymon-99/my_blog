@@ -48,7 +48,13 @@ export const getSinglePost = async (slug: string) => {
     )
   }
 
-  const { code } = await bundleMDX(content)
+  const { code } = await bundleMDX(content, {
+    cwd: process.cwd(),
+    esbuildOptions(options) {
+      options.platform = 'node'
+      return options
+    },
+  })
 
   return { data, code }
 }
