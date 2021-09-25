@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { GiMoebiusTriangle } from 'react-icons/gi'
 import { footerLinks } from 'utils/constants'
+import CustomLink from './CustomLink'
 
 const Footer = () => {
   return (
@@ -28,9 +29,9 @@ const Footer = () => {
         <p>Created by Szymon Prusak</p>
       </div>
       <div className='flex flex-col space-y-6 items-center md:justify-between md:items-end'>
-        <Link href='/contact'>
-          <a className='btn-primary  '>Contact</a>
-        </Link>
+        <CustomLink href='/contact' contained>
+          Contact
+        </CustomLink>
         <div className='flex space-x-6'>
           {footerLinks.map((link) => {
             return (

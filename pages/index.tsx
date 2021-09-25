@@ -1,7 +1,6 @@
 import type { NextPage, GetStaticProps } from 'next'
 import { getAllPosts } from 'utils/mdx'
-import Link from 'next/link'
-import { WelcomeSection, Posts, PageTitle } from 'components'
+import { WelcomeSection, Posts, CustomLink } from 'components'
 import { IPost } from 'types'
 
 interface IHomeProps {
@@ -24,11 +23,7 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
       </main>
 
       <div className='flex justify-center mt-16'>
-        <Link href='/blog'>
-          <a className=' btn text-gray-900 border-gray-900 border-2 hover:text-gray-200 hover:bg-gray-900'>
-            Go to all blog posts
-          </a>
-        </Link>
+        <CustomLink href='/blog'>All Posts</CustomLink>
       </div>
     </>
   )

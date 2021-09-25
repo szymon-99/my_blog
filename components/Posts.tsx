@@ -13,7 +13,7 @@ const Posts: FC<PostsProps> = ({ posts }) => {
   const router = useRouter()
 
   return (
-    <section className=' section gap-16 grid sm:gap-12 sm:grid-cols-2 '>
+    <section className=' section gap-16 grid md:gap-12 md:grid-cols-2 '>
       {posts.map((post, index) => {
         const { data, slug } = post
 

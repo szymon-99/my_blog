@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { getCategories, getCategoryPosts } from '../../utils/mdx'
 import { ParsedUrlQuery } from 'querystring'
 import { IPost, TCategory } from '../../types'
-import { PageTitle, Posts } from 'components'
+import { CustomLink, PageTitle, Posts } from 'components'
 
 interface ICategoryParams extends ParsedUrlQuery {
   category: TCategory
@@ -19,6 +19,10 @@ const CategoryPage: NextPage<CategoryPageProps> = ({ posts, category }) => {
       <PageTitle title={category} category={category} />
 
       <Posts posts={posts} />
+
+      <div className='mt-16 text-center md:text-left'>
+        <CustomLink href='/blog'>Back to Posts</CustomLink>
+      </div>
     </main>
   )
 }

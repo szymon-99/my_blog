@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { PostMetadata } from 'types'
 import Link from 'next/link'
 import React from 'react'
-import { PageTitle } from 'components'
+import { CustomLink, PageTitle } from 'components'
 import { mdxComponents } from 'utils/constants'
 import { getMDXComponent } from 'mdx-bundler/client'
 
@@ -25,9 +25,7 @@ const SinglePost: NextPage<SinglePostProps> = ({ data, code }) => {
       <PageTitle title={data.title} category={data.category} />
       <main className=' max-w-3xl mx-auto section'>
         <Component components={mdxComponents} />
-        <Link href='/'>
-          <a className='btn-primary  inline-block'>Back to home page</a>
-        </Link>
+        <CustomLink href='/blog'>Back to posts</CustomLink>
       </main>
     </>
   )
