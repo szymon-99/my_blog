@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const WelcomeSection = () => {
   return (
-    <section className='-mt-16 grid gap-4 grid-rows-2 lg:grid-rows-1  lg:grid-cols-12 min-h-screen lg:min-h-0 lg:my-40'>
+    <section className='-mt-16 grid gap-4 grid-rows-2 lg:grid-rows-1  lg:grid-cols-12 min-h-screen max-h-screen lg:min-h-0 lg:my-40'>
       <div className='text-center self-end  flex flex-col justify-center lg:self-auto lg:col-span-7 lg:text-left '>
         <h1 className='text-4xl md:text-6xl text-gray-900'>
           Welcome to
@@ -20,11 +21,13 @@ const WelcomeSection = () => {
           </Link>
         </div>
       </div>
-      <div className='   flex items-center justify-center  lg:col-span-5 lg:h-auto '>
-        <img
-          className=' w-4/5 max-w-sm  lg:w-full lg:max-w-none'
-          src='/coder.svg'
+      <div className='flex items-center justify-center  lg:col-span-5 lg:h-auto lg:items-stretch relative'>
+        <Image
+          layout='intrinsic'
+          height={400}
+          width={400}
           alt='coding guy'
+          src='/coder.svg'
         />
       </div>
     </section>
