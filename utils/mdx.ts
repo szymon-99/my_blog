@@ -31,6 +31,23 @@ export const getAllPosts = () => {
 export const getSinglePost = async (slug: string) => {
   const { data, content } = getFrontmatterData(slug + '.mdx')
 
+  if (process.platform === 'win32') {
+    process.env.ESBUILD_BINARY_PATH = path.join(
+      process.cwd(),
+      'node_modules',
+      'esbuild',
+      'esbuild.exe'
+    )
+  } else {
+    process.env.ESBUILD_BINARY_PATH = path.join(
+      process.cwd(),
+      'node_modules',
+      'esbuild',
+      'bin',
+      'esbuild'
+    )
+  }
+
   const { code } = await bundleMDX(content)
 
   return { data, code }
@@ -49,8 +66,6 @@ export const getCategories = () => {
 }
 
 export const getCategoryPosts = (category: TCategory) => {
-  const files = fs.readdirSync(POSTS_PATH)
-
   const posts = getAllPosts()
 
   return posts.filter((post) => post.data.category === category)
