@@ -31,9 +31,9 @@ const Prism: FC = ({ children }) => {
             {language}
           </span>
           {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
+            <div key={i} {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
+                <span key={i} {...getTokenProps({ token, key })} />
               ))}
             </div>
           ))}

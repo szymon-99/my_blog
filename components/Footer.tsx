@@ -38,6 +38,7 @@ const Footer = () => {
               <a
                 key={link.href}
                 href={link.href}
+                rel='noreferrer'
                 target='_blank'
                 className='text-2xl text-black transition transform hover:text-purple-900 hover:scale-105'
               >
