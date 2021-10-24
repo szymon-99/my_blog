@@ -77,8 +77,12 @@ const ContactForm = () => {
           <span className={`${isLoading && 'opacity-0'}`}>SUBMIT</span>
         </button>
       </form>
-      {/* {isSuccess && <p className='text-2xl text-green-400'>Success!!!</p>} */}
-      {isError && <p className='text-2xl text-red-600'>Errro happened</p>}
+
+      {isError && (
+        <p className='text-2xl text-red-600'>
+          Sorry, an unexpected Error ocurred
+        </p>
+      )}
     </FormProvider>
   )
 }

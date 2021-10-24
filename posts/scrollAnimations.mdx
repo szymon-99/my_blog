@@ -1,0 +1,79 @@
+---
+title: Scroll Animations
+category: React
+readTime: 8
+date: '2021-10-24'
+description: How I created scroll reveal animations on my portfolio website using React.js and Framer Motion
+---
+
+Okay so have you ever wanted to make this awesome slide in animation in React but felt like it's something very hard?
+There are some existing libraries that solves this problem for you like scrollReveal but what if you want to make your own custom awesome scroll based animation? Actually there is very simple solution to that using Intersection Observer API and Framer Motion.
+
+#### In this tutorial I will show you how I implemented this on my portfolio website.
+
+[check this out](https://szymonprusak.vercel.app/)
+
+Let's start by creating our component for example this will be a `<Title/>` component that is used in every section of our page and we want it to slide in when user scrolls to the section.
+
+```jsx
+const Title = ({ children }) => {
+  return <h1>{children}</h1>
+}
+```
+
+Now we need to find out if our component is currently in viewport. To do this we need to use Intersection Observer API. But I think that there is actually very well minimalistic library that let's us use this API with react hooks which will make our code more readable.
+
+To install this library and framer motion type in your console
+
+`npm install react-intersection-observer framer-motion`
+
+**Okay now let's see how to check if our component is on the page**
+
+```jsx
+import { useInView } from 'react-intersection-observer'
+
+const Title = ({ children }) => {
+  const { ref, inView } = useInView()
+
+  console.log(inView)
+
+  return <h1 ref={ref}>{children}</h1>
+}
+```
+
+To make our element watched we need to provide it a ref that comes from useInView hook. Then when element hits the viewport InView variable will become true and forces a render of our component that let's us start the animation.
+
+Let's now create our animation with framer motion and see how we can implement this animation when user scrolls to our component. To do this we need to create motion component and use hook provided by motion that let's us control the animation.
+
+```jsx
+import { useInView } from 'react-intersection-observer'
+import { motion, useAnimation } from 'framer-motion'
+
+const Title = ({ children }) => {
+  const { ref, inView } = useInView()
+  const animationControls = useAnimation()
+
+  if (InView) {
+    animationControls.start({ opacity: 1, y: 0 })
+  }
+
+  return (
+    <motion.h1
+      initial={{ opacity: 0, y: 50 }}
+      animate={animationControls}
+      ref={ref}
+    >
+      {children}
+    </motion.h1>
+  )
+}
+```
+
+#### Congratulations
+
+Your component is now animated once when it hits the viewport!
+You can customize this method to your preference with adding more complexed animaitons or controlling when animation starts. For example if you want to animate your component when it's 50% in the viewport just add a threshold to useInView hook like this.
+
+```jsx
+const { ref, inView } = useInView({ threshold: 0.5 })
+```

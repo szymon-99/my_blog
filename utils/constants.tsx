@@ -5,6 +5,7 @@ import {
   PrismSetup,
   Blockquote,
   Paragraph,
+  Anchor,
 } from 'components/blog'
 
 export const mdxComponents = {
@@ -15,6 +16,7 @@ export const mdxComponents = {
   inlineCode: Code,
   blockquote: Blockquote,
   p: Paragraph,
+  a: Anchor,
 }
 
 interface NavLink {

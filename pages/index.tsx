@@ -19,7 +19,7 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
         </h3>
       </div>
       <main>
-        <Posts posts={posts.slice(0, 6)} />
+        <Posts posts={posts} />
       </main>
 
       <div className='flex justify-center mt-16'>
@@ -32,7 +32,7 @@ const Home: NextPage<IHomeProps> = ({ posts }) => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts()
+  const posts = getAllPosts().slice(0, 6)
 
   return {
     props: {

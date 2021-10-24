@@ -27,7 +27,7 @@ const Prism: FC = ({ children }) => {
           className='p-4 relative block my-6 rounded-md shadow md:p-8'
           style={style}
         >
-          <span className='absolute right-0 text-xs top-0 bg-purple-600 text-white rounded-bl-lg p-1 uppercase '>
+          <span className='absolute right-0 text-xs top-0 bg-purple-600 text-white rounded-bl-lg p-1 lowercase '>
             {language}
           </span>
           {tokens.map((line, i) => (

@@ -24,7 +24,9 @@ const SinglePost: NextPage<SinglePostProps> = ({ data, code }) => {
       <PageTitle title={data.title} category={data.category} />
       <main className=' max-w-3xl mx-auto section'>
         <Component components={mdxComponents} />
-        <CustomLink href='/blog'>Back to posts</CustomLink>
+        <div className='mt-12 md:mt-18'>
+          <CustomLink href='/blog'>Back to posts</CustomLink>
+        </div>
       </main>
     </>
   )

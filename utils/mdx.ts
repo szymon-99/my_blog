@@ -25,7 +25,9 @@ export const getAllPosts = () => {
     return { data, slug }
   })
 
-  return postsMeta
+  return postsMeta.sort((a, b) => {
+    return Date.parse(b.data.date) - Date.parse(a.data.date)
+  })
 }
 
 export const getSinglePost = async (slug: string) => {
